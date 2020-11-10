@@ -60,4 +60,14 @@ class Pelicula {
     overview = json['overview'];
     releaseDate = json['release_date'];
   }
+
+  getPosterImg() {
+    final _urlImg = 'https://image.tmdb.org/t/p/w500$posterPath';
+    //print(_urlImg);
+    if (_urlImg == null) {
+      return 'https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181101027/112815900-no-image-available-icon-flat-vector.jpg';
+    } else {
+      return _urlImg;
+    }
+  }
 }
