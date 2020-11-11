@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
             style: Theme.of(context).textTheme.subtitle1,
           ),
           SizedBox(
-            height: 10.0,
+            height: 5.0,
           ),
           FutureBuilder(
             future: peliculasProvider.getPopulares(),
