@@ -3,6 +3,7 @@ import 'package:pelis_app2/src/models/pelicula_model.dart';
 
 import 'package:pelis_app2/src/providers/peliculas_provider.dart';
 import 'package:pelis_app2/src/widgets/card_swiper_widget.dart';
+import 'package:pelis_app2/src/widgets/movie_horizontal.dart';
 
 class HomePage extends StatelessWidget {
   final peliculasProvider = new PeliculasProvider();
@@ -48,17 +49,22 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'populares',
+            'Populares',
             style: Theme.of(context).textTheme.subtitle1,
+          ),
+          SizedBox(
+            height: 10.0,
           ),
           FutureBuilder(
             future: peliculasProvider.getPopulares(),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
               //print(snapshot.data[1].title);
-              snapshot.data.forEach((e) => print(e.title));
-              return Text('');
-              //return Text(snapshot.data[1].title);
+              //snapshot.data.forEach((e) => print(e.title));
+              if (snapshot.hasData) {
+                return MovieHorizontal(peliculas: snapshot.data);
+              }
+              return Center(child: CircularProgressIndicator());
             },
           ),
         ],
