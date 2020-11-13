@@ -35,8 +35,8 @@ class MovieHorizontal extends StatelessWidget {
     );
   }
 
-  Widget _tarjeta(BuildContext context, Pelicula e) {
-    return Container(
+  Widget _tarjeta(BuildContext context, Pelicula pelicula) {
+    final tarjeta = Container(
       margin: EdgeInsets.only(right: 5.0),
       child: Column(
         children: [
@@ -46,14 +46,21 @@ class MovieHorizontal extends StatelessWidget {
                 fit: BoxFit.cover,
                 height: 130.0,
                 placeholder: AssetImage('assets/img/no-image.jpg'),
-                image: NetworkImage(e.getPosterImg())),
+                image: NetworkImage(pelicula.getPosterImg())),
           ),
           Text(
-            e.title,
+            pelicula.title,
             overflow: TextOverflow.ellipsis,
           )
         ],
       ),
+    );
+
+    return GestureDetector(
+      child: tarjeta,
+      onTap: () {
+        Navigator.pushNamed(context, '/detalle', arguments: pelicula);
+      },
     );
   }
 
