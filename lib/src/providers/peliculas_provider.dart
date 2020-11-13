@@ -10,6 +10,7 @@ class PeliculasProvider {
   String _language = 'es-MX';
 
   int _popularesPage = 0;
+  bool _cargando = false;
 
   List<Pelicula> _populares = new List();
 
@@ -38,18 +39,25 @@ class PeliculasProvider {
   }
 
   Future<List<Pelicula>> getPopulares() async {
+    if (_cargando) return [];
+    _cargando = true;
     _popularesPage++;
+
+    print('Cargando');
 
     final url = Uri.https(_url, '/3/movie/popular', {
       'api_key': _apikey,
       'language': _language,
       'page': _popularesPage.toString()
     });
+
     final peliculasLista = await _peticion(url);
     //print(peliculasLista);
 
     _populares.addAll(peliculasLista);
     popularesSink(_populares);
+
+    _cargando = false;
     return peliculasLista;
   }
 
