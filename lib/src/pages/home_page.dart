@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
         if (snapshot.hasData) {
           //print(snapshot.data[0].title);
-          peliculasProvider.getCast(snapshot.data[0].id.toString());
+          //peliculasProvider.getCast(snapshot.data[0].id.toString());
           return CardSwiper(
             peliculas: snapshot.data,
           );

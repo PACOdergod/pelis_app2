@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pelis_app2/src/models/actores_model.dart';
 import 'package:pelis_app2/src/models/pelicula_model.dart';
+import 'package:pelis_app2/src/providers/peliculas_provider.dart';
 
 class PeliculaDetalle extends StatelessWidget {
   @override
@@ -20,6 +22,7 @@ class PeliculaDetalle extends StatelessWidget {
           _descripcion(pelicula),
           _descripcion(pelicula),
           _descripcion(pelicula),
+          _crearCasting(pelicula)
         ]))
       ],
     ));
@@ -97,6 +100,59 @@ class PeliculaDetalle extends StatelessWidget {
       child: Text(
         pelicula.overview,
         textAlign: TextAlign.justify,
+      ),
+    );
+  }
+
+  Widget _crearCasting(Pelicula pelicula) {
+    final pelicProvider = new PeliculasProvider();
+
+    return FutureBuilder(
+      future: pelicProvider.getCast(pelicula.id.toString()),
+      //initialData: InitialData,
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+        if (snapshot.hasData) {
+          return _crearActoresPageView(snapshot.data);
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
+  }
+
+  Widget _crearActoresPageView(List<Actor> actores) {
+    return SizedBox(
+      height: 300.0,
+      child: PageView.builder(
+        pageSnapping: false,
+        controller: PageController(viewportFraction: 0.4, initialPage: 1),
+        itemCount: actores.length,
+        itemBuilder: (context, i) => _actorTarjeta(actores[i]),
+      ),
+    );
+  }
+
+  Widget _actorTarjeta(Actor actor) {
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: FadeInImage(
+                height: 200,
+                fit: BoxFit.cover,
+                placeholder: AssetImage('assets/img/no-image.jpg'),
+                image: NetworkImage(actor.getPosterImg())),
+          ),
+          Text(
+            actor.originalName,
+            textAlign: TextAlign.center,
+            //overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }
