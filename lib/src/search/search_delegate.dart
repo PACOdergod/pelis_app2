@@ -52,7 +52,10 @@ class DataSearch extends SearchDelegate {
           return ListView(
             children: peliculas.map((p) {
               return ListTile(
-                onTap: () {},
+                onTap: () {
+                  close(context, null);
+                  Navigator.pushNamed(context, '/detalle', arguments: p);
+                },
                 leading: FadeInImage(
                     fit: BoxFit.cover,
                     width: 50.0,
