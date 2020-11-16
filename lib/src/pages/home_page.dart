@@ -3,6 +3,7 @@ import 'package:pelis_app2/src/models/pelicula_model.dart';
 import 'package:pelis_app2/src/providers/peliculas_provider.dart';
 import 'package:pelis_app2/src/widgets/card_swiper_widget.dart';
 import 'package:pelis_app2/src/widgets/movie_horizontal.dart';
+import 'package:pelis_app2/src/search/search_delegate.dart';
 
 class HomePage extends StatelessWidget {
   final peliculasProvider = new PeliculasProvider();
@@ -15,7 +16,16 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('home page'),
           backgroundColor: Colors.amber,
-          actions: [IconButton(icon: Icon(Icons.search), onPressed: null)],
+          actions: [
+            IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: DataSearch(),
+                  );
+                })
+          ],
         ),
         body: Container(
           child: Column(
