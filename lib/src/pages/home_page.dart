@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Peliculas'),
+          title: Text('PelisPaco'),
           backgroundColor: Colors.amber,
           actions: [
             IconButton(
