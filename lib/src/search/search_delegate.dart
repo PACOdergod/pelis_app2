@@ -6,6 +6,7 @@ class DataSearch extends SearchDelegate {
   final peliculas = ['Zootopia', 'Bob Esponja', 'After', 'Enola', 'Batman'];
   final peliculasRecientes = ['mulan', 'frozen'];
   final peliculasProvider = new PeliculasProvider();
+  
   @override
   List<Widget> buildActions(BuildContext context) {
     // Las acciones de nuetro appbar
