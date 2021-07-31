@@ -35,7 +35,7 @@ class DataSearch extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // Crea los resultados que mostrar
-    return null;
+    return Container();
   }
 
   @override
@@ -51,7 +51,7 @@ class DataSearch extends SearchDelegate {
         if (snapshot.hasData) {
           final peliculas = snapshot.data;
           return ListView(
-            children: peliculas.map((p) {
+            children: peliculas!.map((p) {
               return ListTile(
                 onTap: () {
                   close(context, null);
@@ -62,8 +62,8 @@ class DataSearch extends SearchDelegate {
                     width: 50.0,
                     placeholder: AssetImage('assets/img/no-image.jpg'),
                     image: NetworkImage(p.getPosterImg())),
-                title: Text(p.title),
-                subtitle: Text(p.originalTitle),
+                title: Text(p.title!),
+                subtitle: Text(p.originalTitle!),
               );
             }).toList(),
           );

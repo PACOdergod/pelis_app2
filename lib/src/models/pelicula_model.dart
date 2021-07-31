@@ -1,5 +1,5 @@
 class Peliculas {
-  List<Pelicula> items = new List();
+  List<Pelicula> items = [];
   Peliculas();
 
   Peliculas.fromJsonList(List<dynamic> jsonList) {
@@ -12,20 +12,20 @@ class Peliculas {
 }
 
 class Pelicula {
-  double popularity;
-  int voteCount;
-  bool video;
-  String posterPath;
-  int id;
-  bool adult;
-  String backdropPath;
-  String originalLanguage;
-  String originalTitle;
-  List<int> genreIds;
-  String title;
-  double voteAverage;
-  String overview;
-  String releaseDate;
+  double? popularity;
+  int? voteCount;
+  bool? video;
+  String? posterPath;
+  int? id;
+  bool? adult;
+  String? backdropPath;
+  String? originalLanguage;
+  String? originalTitle;
+  List<int>? genreIds;
+  String? title;
+  double? voteAverage;
+  String? overview;
+  String? releaseDate;
 
   Pelicula({
     this.popularity,

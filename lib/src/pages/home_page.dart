@@ -30,7 +30,10 @@ class HomePage extends StatelessWidget {
         body: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[_swiperTarjetas(), _footer(context)],
+            children: [
+              _swiperTarjetas(), 
+              _footer(context)
+            ],
           ),
         ));
   }
@@ -44,7 +47,7 @@ class HomePage extends StatelessWidget {
           //print(snapshot.data[0].title);
           //peliculasProvider.getCast(snapshot.data[0].id.toString());
           return CardSwiper(
-            peliculas: snapshot.data,
+            peliculas: snapshot.data!,
           );
         } else {
           return Center(
@@ -75,7 +78,7 @@ class HomePage extends StatelessWidget {
               //snapshot.data.forEach((e) => print(e.title));
               if (snapshot.hasData) {
                 return MovieHorizontal(
-                  peliculas: snapshot.data,
+                  peliculas: snapshot.data!,
                   siguientePagina: peliculasProvider.getPopulares,
                 );
               }

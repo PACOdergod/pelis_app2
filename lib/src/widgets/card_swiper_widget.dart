@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:pelis_app2/src/models/pelicula_model.dart';
+import 'package:card_swiper/card_swiper.dart';
 
 class CardSwiper extends StatelessWidget {
   final List<Pelicula> peliculas;
 
-  CardSwiper({@required this.peliculas});
+  CardSwiper({required this.peliculas});
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;

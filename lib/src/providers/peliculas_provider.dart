@@ -13,7 +13,7 @@ class PeliculasProvider {
   int _popularesPage = 0;
   bool _cargando = false;
 
-  List<Pelicula> _populares = new List();
+  List<Pelicula> _populares = [];
 
   final _popularesStreamController =
       StreamController<List<Pelicula>>.broadcast();
@@ -25,7 +25,7 @@ class PeliculasProvider {
       _popularesStreamController.stream;
 
   void disposeStream() {
-    _popularesStreamController?.close();
+    _popularesStreamController.close();
   }
 
   Future<List<Pelicula>> getEnCines() async {
